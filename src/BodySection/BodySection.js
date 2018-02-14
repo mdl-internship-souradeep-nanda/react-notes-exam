@@ -1,12 +1,29 @@
 import React from 'react';
 import './BodySection.css';
 
+import clipboard from './clipboard.svg';
+
 import STRINGS from '../strings.json';
 
 function BodySection() {
   return (
-    <div>
-      {STRINGS.body_header}
+    <div className="wrapper">
+      <div className="body-header-wrapper">
+        {STRINGS.body_header}
+        <img src={clipboard} alt="clipboard" />
+      </div>
+      <div className="text-wrapper">
+        <textarea
+          className="text-body"
+          cols="40"
+          rows="5"
+          placeholder={STRINGS.body_notes_placeholder.join('\n')}
+        />
+      </div>
+      <div className="body-footer">
+        <button className="save-button" >{STRINGS.save}</button>
+        <div className="character-count">{STRINGS.characters}</div>
+      </div>
     </div>
   );
 }

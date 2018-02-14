@@ -1,0 +1,16 @@
+{
+  "header": "Start taking notes",
+  "note_title": "Note title",
+  "title_placeholder": "Tasks for today",
+  "language": "en",
+  "body_header": "Please type your note below",
+  "body_notes_placeholder": [
+    "Understand how react native works",
+    "Build a native android or ios app",
+    "Setup CI for automated tools",
+    "Convensions to manage code base"
+  ],
+  "save": "Save",
+  "about_us": "About us",
+  "characters": "150 characters"
+}

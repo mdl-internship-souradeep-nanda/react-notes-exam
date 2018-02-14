@@ -15,26 +15,17 @@ class BodySection extends React.Component {
     this.onTextChange = this.onTextChange.bind(this);
     this.MAX_LENGTH = 10;
   }
-  onTextChange(event) {
-    const evt = event;
-    let count = evt.target.value.length;
-    let append = '';
-    if (count > this.MAX_LENGTH) {
-      append = ' red';
-      evt.target.value = evt.target.value.slice(0, this.MAX_LENGTH);
-      count = this.MAX_LENGTH;
-    } else {
-      append = '';
-    }
+  onTextChange(evt) {
+    const count = evt.target.value.length;
     this.setState({
       count,
-      charStyle: append,
+      charStyle: count === this.MAX_LENGTH ? 'red' : '',
     });
   }
   render() {
     const charString = this.state.count + STRINGS.characters;
-    const characterCountStyle = `character-count${this.state.charStyle}`;
-    const bodyTextStyle = `text-body${this.state.charStyle}`;
+    const characterCountStyle = `character-count ${this.state.charStyle}`;
+    const bodyTextStyle = `text-body ${this.state.charStyle}`;
     return (
       <div className="wrapper">
         <div className="body-header-wrapper">
@@ -49,6 +40,7 @@ class BodySection extends React.Component {
             rows="15"
             placeholder={STRINGS.body_notes_placeholder.join('\n')}
             onChange={this.onTextChange}
+            maxLength={this.MAX_LENGTH}
           />
         </div>
         <div className="body-footer">

@@ -10,26 +10,31 @@ class BodySection extends React.Component {
     super(props);
     this.state = {
       count: 0,
-      charStyle: 'character-count',
+      charStyle: '',
     };
-    this.base = 'character-count';
     this.onTextChange = this.onTextChange.bind(this);
+    this.MAX_LENGTH = 10;
   }
-  onTextChange(evt) {
-    const count = evt.target.value.length;
+  onTextChange(event) {
+    const evt = event;
+    let count = evt.target.value.length;
     let append = '';
-    if (count > 10) {
+    if (count > this.MAX_LENGTH) {
       append = ' red';
+      evt.target.value = evt.target.value.slice(0, this.MAX_LENGTH);
+      count = this.MAX_LENGTH;
     } else {
       append = '';
     }
     this.setState({
       count,
-      charStyle: this.base + append,
+      charStyle: append,
     });
   }
   render() {
     const charString = this.state.count + STRINGS.characters;
+    const characterCountStyle = `character-count${this.state.charStyle}`;
+    const bodyTextStyle = `text-body${this.state.charStyle}`;
     return (
       <div className="wrapper">
         <div className="body-header-wrapper">
@@ -39,7 +44,7 @@ class BodySection extends React.Component {
         <div className="text-wrapper">
           <textarea
             type="text"
-            className="text-body"
+            className={bodyTextStyle}
             cols="40"
             rows="15"
             placeholder={STRINGS.body_notes_placeholder.join('\n')}
@@ -48,7 +53,7 @@ class BodySection extends React.Component {
         </div>
         <div className="body-footer">
           <button className="save-button" >{STRINGS.save}</button>
-          <div className={this.state.charStyle}>{charString}</div>
+          <div className={characterCountStyle}>{charString}</div>
         </div>
       </div>
     );

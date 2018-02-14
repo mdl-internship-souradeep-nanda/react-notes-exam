@@ -1,7 +1,7 @@
 import React from 'react';
 import './TitleSection.css';
 
-import STRINGS from '../strings.json';
+import STRINGS from '../../strings.json';
 
 function TitleSection() {
   return (

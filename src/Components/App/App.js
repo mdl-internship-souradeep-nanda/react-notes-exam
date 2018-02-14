@@ -4,7 +4,7 @@ import './App.css';
 import TitleSection from '../TitleSection/TitleSection';
 import BodySection from '../BodySection/BodySection';
 
-import STRINGS from '../strings.json';
+import STRINGS from '../../strings.json';
 
 function App() {
   return (

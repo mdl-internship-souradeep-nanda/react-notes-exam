@@ -3,7 +3,7 @@ import './BodySection.css';
 
 import clipboard from './clipboard.svg';
 
-import STRINGS from '../strings.json';
+import STRINGS from '../../strings.json';
 
 class BodySection extends React.Component {
   constructor(props) {

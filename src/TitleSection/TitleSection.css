@@ -1,0 +1,30 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.title-bar{
+  display: flex;
+  padding: 2%;
+  flex:1;
+}
+
+.title{
+  font-size: 2em;
+  flex:1;
+}
+
+.language-button{
+  font-size: 2em;
+}
+
+.input-wrapper{
+  flex:1;
+  display: flex;
+  padding: 0% 2% 0% 2%;
+}
+
+.note-title{
+  font-size: 3em;
+  flex: 1;
+}

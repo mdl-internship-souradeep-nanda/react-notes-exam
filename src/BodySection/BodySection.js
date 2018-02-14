@@ -9,14 +9,15 @@ function BodySection() {
   return (
     <div className="wrapper">
       <div className="body-header-wrapper">
-        {STRINGS.body_header}
+        <i className="header-text">{STRINGS.body_header}</i>
         <img src={clipboard} alt="clipboard" />
       </div>
       <div className="text-wrapper">
         <textarea
+          type="text"
           className="text-body"
           cols="40"
-          rows="5"
+          rows="15"
           placeholder={STRINGS.body_notes_placeholder.join('\n')}
         />
       </div>

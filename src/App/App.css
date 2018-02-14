@@ -11,6 +11,12 @@ header{
   justify-content: center;
   background: #fff;
   flex:1;
+  justify-content: center; 
+  font-size: 2em;
+}
+
+.center-span{
+  justify-content: center; 
 }
 
 .title-container{
@@ -26,4 +32,5 @@ footer{
   justify-content: center;
   background: #fff;
   flex:1;
+  display: flex;
 }

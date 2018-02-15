@@ -13,7 +13,6 @@ class App extends React.Component {
       language: 'english',
       notes: [],
     };
-    this.title = '';
     this.titleFieldHandle = null;
   }
 
@@ -25,7 +24,7 @@ class App extends React.Component {
   addNote = (noteBody) => {
     if (noteBody && this.titleFieldHandle && this.titleFieldHandle.value) {
       const note = {
-        title: this.title,
+        title: this.titleFieldHandle.value,
         body: noteBody,
       };
       this.titleFieldHandle.value = '';

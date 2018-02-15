@@ -1,36 +1,30 @@
 .App{
-  display:flex;
-  flex-direction: column;
-  background: rgb(233,233,239);
   height: 100vh;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+body{
+  background: rgb(233,233,239);
 }
 
 header{
-  text-align: center;
-  justify-content: center;
-  background: #fff;
   flex:1;
-  justify-content: center; 
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .center-span{
-  justify-content: center; 
+  flex:1;
 }
 
 .title-container{
-  flex:3;
+  flex:1;
 }
 
 .body-container{
-  flex:12;
+  flex:1;
 }
 
 footer{
-  text-align: center;
-  justify-content: center;
-  background: #fff;
   flex:1;
-  display: flex;
 }

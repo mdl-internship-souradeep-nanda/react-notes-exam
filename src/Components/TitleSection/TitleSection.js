@@ -4,7 +4,7 @@ import './TitleSection.css';
 
 function TitleSection(props) {
   return (
-    <div className="wrapper">
+    <div className="title-section-wrapper">
       <div className="title-bar">
         <div className="title">
           {props.noteTitle}

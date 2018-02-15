@@ -25,10 +25,10 @@ class BodySection extends React.Component {
     const characterCountStyle = `character-count ${this.state.charStyle}`;
     const bodyTextStyle = `text-body ${this.state.charStyle}`;
     return (
-      <div className="wrapper">
+      <div className="body-section-wrapper">
         <div className="body-header-wrapper">
           <i className="header-text">{this.props.bodyHeader}</i>
-          <img src={clipboard} alt="clipboard" />
+          <img className="clipboard-img" src={clipboard} alt="clipboard" />
         </div>
         <div className="text-wrapper">
           <textarea
@@ -42,7 +42,9 @@ class BodySection extends React.Component {
           />
         </div>
         <div className="body-footer">
-          <button className="save-button" >{this.props.saveButtonText}</button>
+          <div className="save-button-wrapper">
+            <button className="save-button" >{this.props.saveButtonText}</button>
+          </div>
           <div className={characterCountStyle}>{charString}</div>
         </div>
       </div>

@@ -1,17 +1,43 @@
-.wrapper{
+.title-section-wrapper{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .title-bar{
+  flex:1;
+
+  display: flex;
+  flex-direction: row;
 }
 
 .title{
+  flex:10;
+
+  display: flex;
+  align-items: center;
+
+  font-size: 1.5em;
+  font-style: bold;
 }
 
 .language-button{
+  flex:1;
+  height: 5em;
+  width: 5em;
+  margin: auto;
+  border-radius: 10px;
 }
 
 .input-wrapper{
+  flex:1;
+  display: flex;
+  font-size: 1.5em;
 }
 
 .note-title{
+  flex:1;
+  font-size: 1.5em;
+  border: 1px solid grey;
+  border-radius: 5px;
 }

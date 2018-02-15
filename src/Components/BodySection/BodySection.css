@@ -1,25 +1,55 @@
-.wrapper{
+.body-section-wrapper{
+  display: flex;
+  flex-direction: column;
+  flex:1;
 }
 
 .body-header-wrapper{
+  font-style: italic;
+  color:grey;
+  flex:1;
+  display: flex;
+  flex-direction: row;
 }
 
 .header-text{
+  display: flex;
+  align-items: center;
+}
+
+.clipboard-img{
+  fill: grey;
+  padding-left: 2%;
 }
 
 .text-wrapper{
+  flex:8;
+  display: flex;
 }
 
 .text-body{
+  flex:1;
+  font-size: 1.5em;
+
+  border-radius: 5px;
+  border: 1px solid grey;
 }
 
 .body-footer{
+  flex:1;
+  display: flex;
+  align-items: center;
 }
 
 .save-button{
+  font-size: 1em;
+  background: rgb(233,233,239);
+  border: none;
 }
 
 .character-count{
+  flex:1;
+  text-align: end;
 }
 
 .red{

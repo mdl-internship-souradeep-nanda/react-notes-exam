@@ -9,7 +9,10 @@ function TitleSection(props) {
         <div className="title">
           {props.noteTitle}
         </div>
-        <button className="language-button">
+        <button
+          className="language-button"
+          onClick={props.onLanguageButtonClick}
+        >
           {props.currentLanguage}
         </button>
       </div>
@@ -28,6 +31,7 @@ TitleSection.propTypes = {
   noteTitle: PropTypes.string.isRequired,
   currentLanguage: PropTypes.string.isRequired,
   titlePlaceholder: PropTypes.string.isRequired,
+  onLanguageButtonClick: PropTypes.func.isRequired,
 };
 
 export default TitleSection;

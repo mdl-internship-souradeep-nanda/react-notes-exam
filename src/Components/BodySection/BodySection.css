@@ -1,10 +1,10 @@
-.body-section-wrapper{
+.BodySection-wrapper{
   display: flex;
   flex-direction: column;
   flex:1;
 }
 
-.body-header-wrapper{
+.BodySection-header-wrapper{
   font-style: italic;
   color:grey;
   flex:1;
@@ -12,22 +12,22 @@
   flex-direction: row;
 }
 
-.header-text{
+.BodySection-header-text{
   display: flex;
   align-items: center;
 }
 
-.clipboard-img{
+.BodySection-clipboard-img{
   fill: grey;
   padding-left: 2%;
 }
 
-.text-wrapper{
+.BodySection-text-wrapper{
   flex:8;
   display: flex;
 }
 
-.text-body{
+.BodySection-text-body{
   flex:1;
   font-size: 1.5em;
 
@@ -35,23 +35,23 @@
   border: 1px solid grey;
 }
 
-.body-footer{
+.BodySection-body-footer{
   flex:1;
   display: flex;
   align-items: center;
 }
 
-.save-button{
+.BodySection-save-button{
   font-size: 1em;
   background: rgb(233,233,239);
   border: none;
 }
 
-.character-count{
+.BodySection-character-count{
   flex:1;
   text-align: end;
 }
 
-.red{
+.BodySection-red{
   color:red;
 }

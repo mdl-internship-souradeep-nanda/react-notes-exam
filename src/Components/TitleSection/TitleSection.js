@@ -8,22 +8,22 @@ class TitleSection extends React.Component {
   }
   render() {
     return (
-      <div className="title-section-wrapper">
-        <div className="title-bar">
-          <div className="title">
+      <div className="TitleSection-wrapper">
+        <div className="TitleSection-title-bar">
+          <div className="TitleSection-title">
             {this.props.noteTitle}
           </div>
           <button
-            className="language-button"
+            className="TitleSection-language-button"
             onClick={this.props.onLanguageButtonClick}
           >
             {this.props.currentLanguage}
           </button>
         </div>
-        <div className="input-wrapper">
+        <div className="TitleSection-input-wrapper">
           <input
             ref={(titleField) => { this.titleField = titleField; }}
-            className="note-title"
+            className="TitleSection-note-title"
             type="text"
             placeholder={this.props.titlePlaceholder}
           />

@@ -50,13 +50,13 @@ class App extends React.Component {
     console.log(this.state.notes);
     const strings = STRINGS[this.state.language];
     return (
-      <div className="App">
-        <header>
-          <strong className="center-span">
+      <div className="App-wrapper">
+        <div className="App-header">
+          <strong className="App-center-span">
             {strings.header_title}
           </strong>
-        </header>
-        <div className="title-container">
+        </div>
+        <div className="App-title-container">
           <TitleSection
             noteTitle={strings.note_title}
             titlePlaceholder={strings.title_placeholder}
@@ -65,7 +65,7 @@ class App extends React.Component {
             setTitleField={this.setTitleField}
           />
         </div>
-        <div className="body-container">
+        <div className="App-body-container">
           <BodySection
             bodyHeader={strings.body_header}
             bodyNotesPlaceholder={strings.body_notes_placeholder}
@@ -75,11 +75,11 @@ class App extends React.Component {
             onSaveButton={this.addNote}
           />
         </div>
-        <footer>
-          <strong className="center-span">
+        <div className="App-footer">
+          <strong className="App-center-span">
             {strings.about_us}
           </strong>
-        </footer>
+        </div>
       </div>
     );
   }

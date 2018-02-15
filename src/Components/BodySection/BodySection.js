@@ -29,21 +29,21 @@ class BodySection extends React.Component {
 
     this.setState({
       count,
-      charStyle: count === this.MAX_LENGTH ? 'red' : '',
+      charStyle: count === this.MAX_LENGTH ? 'BodySection-red' : '',
     });
   }
 
   render() {
     const charString = (this.MAX_LENGTH - this.state.count) + this.props.charactersLabelText;
-    const characterCountStyle = `character-count ${this.state.charStyle}`;
-    const bodyTextStyle = `text-body ${this.state.charStyle}`;
+    const characterCountStyle = `BodySection-character-count ${this.state.charStyle}`;
+    const bodyTextStyle = `BodySection-text-body ${this.state.charStyle}`;
     return (
-      <div className="body-section-wrapper">
-        <div className="body-header-wrapper">
-          <i className="header-text">{this.props.bodyHeader}</i>
-          <img className="clipboard-img" src={clipboard} alt="clipboard" />
+      <div className="BodySection-wrapper">
+        <div className="BodySection-header-wrapper">
+          <i className="BodySection-header-text">{this.props.bodyHeader}</i>
+          <img className="BodySection-clipboard-img" src={clipboard} alt="clipboard" />
         </div>
-        <div className="text-wrapper">
+        <div className="BodySection-text-wrapper">
           <textarea
             ref={(textAreaHandle) => { this.textAreaHandle = textAreaHandle; }}
             type="text"
@@ -55,9 +55,9 @@ class BodySection extends React.Component {
             maxLength={this.MAX_LENGTH}
           />
         </div>
-        <div className="body-footer">
-          <div className="save-button-wrapper">
-            <button onClick={this.onSaveButton} className="save-button" >{this.props.saveButtonText}</button>
+        <div className="BodySection-body-footer">
+          <div className="BodySection-save-button-wrapper">
+            <button onClick={this.onSaveButton} className="BodySection-save-button" >{this.props.saveButtonText}</button>
           </div>
           <div className={characterCountStyle}>{charString}</div>
         </div>

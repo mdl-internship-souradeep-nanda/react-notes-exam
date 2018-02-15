@@ -1,17 +1,17 @@
-.title-section-wrapper{
+.TitleSection-wrapper{
   display: flex;
   flex-direction: column;
   flex: 1;
 }
 
-.title-bar{
+.TitleSection-title-bar{
   flex:1;
 
   display: flex;
   flex-direction: row;
 }
 
-.title{
+.TitleSection-title{
   flex:10;
 
   display: flex;
@@ -21,7 +21,7 @@
   font-style: bold;
 }
 
-.language-button{
+.TitleSection-language-button{
   flex:1;
   height: 5em;
   width: 5em;
@@ -29,13 +29,13 @@
   border-radius: 10px;
 }
 
-.input-wrapper{
+.TitleSection-input-wrapper{
   flex:1;
   display: flex;
   font-size: 1.5em;
 }
 
-.note-title{
+.TitleSection-note-title{
   flex:1;
   font-size: 1.5em;
   border: 1px solid grey;

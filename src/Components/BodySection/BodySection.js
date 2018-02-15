@@ -11,10 +11,9 @@ class BodySection extends React.Component {
       count: 0,
       charStyle: '',
     };
-    this.onTextChange = this.onTextChange.bind(this);
     this.MAX_LENGTH = 10;
   }
-  onTextChange(evt) {
+  onTextChange = (evt) => {
     const count = evt.target.value.length;
     this.setState({
       count,

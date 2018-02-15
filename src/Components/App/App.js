@@ -12,9 +12,8 @@ class App extends React.Component {
     this.state = {
       language: 'english',
     };
-    this.toggleLanguage = this.toggleLanguage.bind(this);
   }
-  toggleLanguage() {
+  toggleLanguage = () => {
     this.setState(prevState => ({
       language: prevState.language === 'english' ? 'thai' : 'english',
     }));

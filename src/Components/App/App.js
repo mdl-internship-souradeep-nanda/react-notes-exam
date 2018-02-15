@@ -18,7 +18,6 @@ class App extends React.Component {
 
   setCurrentTitle = (evt) => {
     this.titleFieldHandle = evt.target;
-    this.title = this.titleFieldHandle.value;
   }
 
   addNote = (noteBody) => {

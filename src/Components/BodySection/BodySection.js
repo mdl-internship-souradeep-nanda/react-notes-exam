@@ -21,7 +21,7 @@ class BodySection extends React.Component {
     });
   }
   render() {
-    const charString = this.state.count + this.props.charactersLabelText;
+    const charString = (this.MAX_LENGTH - this.state.count) + this.props.charactersLabelText;
     const characterCountStyle = `character-count ${this.state.charStyle}`;
     const bodyTextStyle = `text-body ${this.state.charStyle}`;
     return (

@@ -11,14 +11,23 @@ function App() {
     <div className="App">
       <header>
         <strong className="center-span">
-          {STRINGS.header}
+          {STRINGS.header_title}
         </strong>
       </header>
       <div className="title-container">
-        <TitleSection />
+        <TitleSection
+          noteTitle={STRINGS.note_title}
+          titlePlaceholder={STRINGS.title_placeholder}
+          currentLanguage={STRINGS.current_language}
+        />
       </div>
       <div className="body-container">
-        <BodySection />
+        <BodySection
+          bodyHeader={STRINGS.body_header}
+          bodyNotesPlaceholder={STRINGS.body_notes_placeholder}
+          saveButtonText={STRINGS.save_button_text}
+          charactersLabelText={STRINGS.characters_label_text}
+        />
       </div>
       <footer>
         <strong className="center-span">

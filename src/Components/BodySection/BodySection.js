@@ -1,9 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './BodySection.css';
 
 import clipboard from './clipboard.svg';
-
-import STRINGS from '../../strings.json';
 
 class BodySection extends React.Component {
   constructor(props) {
@@ -23,13 +22,13 @@ class BodySection extends React.Component {
     });
   }
   render() {
-    const charString = this.state.count + STRINGS.characters;
+    const charString = this.state.count + this.props.charactersLabelText;
     const characterCountStyle = `character-count ${this.state.charStyle}`;
     const bodyTextStyle = `text-body ${this.state.charStyle}`;
     return (
       <div className="wrapper">
         <div className="body-header-wrapper">
-          <i className="header-text">{STRINGS.body_header}</i>
+          <i className="header-text">{this.props.bodyHeader}</i>
           <img src={clipboard} alt="clipboard" />
         </div>
         <div className="text-wrapper">
@@ -38,18 +37,25 @@ class BodySection extends React.Component {
             className={bodyTextStyle}
             cols="40"
             rows="15"
-            placeholder={STRINGS.body_notes_placeholder.join('\n')}
+            placeholder={this.props.bodyNotesPlaceholder.join('\n')}
             onChange={this.onTextChange}
             maxLength={this.MAX_LENGTH}
           />
         </div>
         <div className="body-footer">
-          <button className="save-button" >{STRINGS.save}</button>
+          <button className="save-button" >{this.props.saveButtonText}</button>
           <div className={characterCountStyle}>{charString}</div>
         </div>
       </div>
     );
   }
 }
+
+BodySection.propTypes = {
+  charactersLabelText: PropTypes.string.isRequired,
+  bodyHeader: PropTypes.string.isRequired,
+  saveButtonText: PropTypes.string.isRequired,
+  bodyNotesPlaceholder: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default BodySection;

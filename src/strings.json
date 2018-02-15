@@ -1,8 +1,8 @@
 {
-  "header": "Start taking notes",
+  "header_title": "Start taking notes",
   "note_title": "Note title",
   "title_placeholder": "Tasks for today",
-  "language": "en",
+  "current_language": "en",
   "body_header": "Please type your note below",
   "body_notes_placeholder": [
     "Understand how react native works",
@@ -10,7 +10,7 @@
     "Setup CI for automated tools",
     "Convensions to manage code base"
   ],
-  "save": "Save",
+  "save_button_text": "Save",
   "about_us": "About us",
-  "characters": " characters"
+  "characters_label_text": " characters"
 }

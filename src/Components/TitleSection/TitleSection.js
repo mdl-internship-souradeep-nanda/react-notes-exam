@@ -1,28 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './TitleSection.css';
 
-import STRINGS from '../../strings.json';
-
-function TitleSection() {
+function TitleSection(props) {
   return (
     <div className="wrapper">
       <div className="title-bar">
         <div className="title">
-          {STRINGS.note_title}
+          {props.noteTitle}
         </div>
         <button className="language-button">
-          {STRINGS.language}
+          {props.currentLanguage}
         </button>
       </div>
       <div className="input-wrapper">
         <input
           className="note-title"
           type="text"
-          placeholder={STRINGS.title_placeholder}
+          placeholder={props.titlePlaceholder}
         />
       </div>
     </div>
   );
 }
+
+TitleSection.propTypes = {
+  noteTitle: PropTypes.string.isRequired,
+  currentLanguage: PropTypes.string.isRequired,
+  titlePlaceholder: PropTypes.string.isRequired,
+};
 
 export default TitleSection;

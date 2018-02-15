@@ -2,30 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TitleSection.css';
 
-function TitleSection(props) {
-  return (
-    <div className="title-section-wrapper">
-      <div className="title-bar">
-        <div className="title">
-          {props.noteTitle}
+class TitleSection extends React.Component {
+  componentDidMount() {
+    this.props.setTitleField(this.titleField);
+  }
+  render() {
+    return (
+      <div className="title-section-wrapper">
+        <div className="title-bar">
+          <div className="title">
+            {this.props.noteTitle}
+          </div>
+          <button
+            className="language-button"
+            onClick={this.props.onLanguageButtonClick}
+          >
+            {this.props.currentLanguage}
+          </button>
         </div>
-        <button
-          className="language-button"
-          onClick={props.onLanguageButtonClick}
-        >
-          {props.currentLanguage}
-        </button>
+        <div className="input-wrapper">
+          <input
+            ref={(titleField) => { this.titleField = titleField; }}
+            className="note-title"
+            type="text"
+            placeholder={this.props.titlePlaceholder}
+          />
+        </div>
       </div>
-      <div className="input-wrapper">
-        <input
-          className="note-title"
-          type="text"
-          placeholder={props.titlePlaceholder}
-          onChange={props.onTitleChange}
-        />
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 TitleSection.propTypes = {
@@ -33,7 +38,7 @@ TitleSection.propTypes = {
   currentLanguage: PropTypes.string.isRequired,
   titlePlaceholder: PropTypes.string.isRequired,
   onLanguageButtonClick: PropTypes.func.isRequired,
-  onTitleChange: PropTypes.func.isRequired,
+  setTitleField: PropTypes.func.isRequired,
 };
 
 export default TitleSection;

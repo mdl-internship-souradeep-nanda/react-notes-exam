@@ -12,10 +12,18 @@ class BodySection extends React.Component {
       charStyle: '',
     };
     this.MAX_LENGTH = 10;
-    this.textAreaHandle = null;
   }
-  onTextChange = (evt) => {
-    this.textAreaHandle = evt.target;
+
+  componentDidMount() {
+    this.props.setBodyTextHandle(this.textAreaHandle);
+  }
+
+  onSaveButton = () => {
+    this.props.onSaveButton();
+    this.onTextChange();
+  }
+
+  onTextChange = () => {
     this.nodeBody = this.textAreaHandle.value;
     const count = this.nodeBody.length;
 
@@ -23,17 +31,6 @@ class BodySection extends React.Component {
       count,
       charStyle: count === this.MAX_LENGTH ? 'red' : '',
     });
-  }
-
-  handleSaveButton = () => {
-    if (this.textAreaHandle) {
-      this.props.addNoteBody(this.textAreaHandle.value);
-      this.textAreaHandle.value = '';
-      this.setState({
-        count: 0,
-        charStyle: '',
-      });
-    }
   }
 
   render() {
@@ -48,6 +45,7 @@ class BodySection extends React.Component {
         </div>
         <div className="text-wrapper">
           <textarea
+            ref={(textAreaHandle) => { this.textAreaHandle = textAreaHandle; }}
             type="text"
             className={bodyTextStyle}
             cols="40"
@@ -59,7 +57,7 @@ class BodySection extends React.Component {
         </div>
         <div className="body-footer">
           <div className="save-button-wrapper">
-            <button onClick={this.handleSaveButton} className="save-button" >{this.props.saveButtonText}</button>
+            <button onClick={this.onSaveButton} className="save-button" >{this.props.saveButtonText}</button>
           </div>
           <div className={characterCountStyle}>{charString}</div>
         </div>
@@ -73,7 +71,8 @@ BodySection.propTypes = {
   bodyHeader: PropTypes.string.isRequired,
   saveButtonText: PropTypes.string.isRequired,
   bodyNotesPlaceholder: PropTypes.arrayOf(PropTypes.string).isRequired,
-  addNoteBody: PropTypes.func.isRequired,
+  setBodyTextHandle: PropTypes.func.isRequired,
+  onSaveButton: PropTypes.func.isRequired,
 };
 
 export default BodySection;

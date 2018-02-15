@@ -14,19 +14,26 @@ class App extends React.Component {
       notes: [],
     };
     this.titleFieldHandle = null;
+    this.bodyTextHandle = null;
   }
 
-  setCurrentTitle = (evt) => {
-    this.titleFieldHandle = evt.target;
+  setTitleField = (dom) => {
+    this.titleFieldHandle = dom;
   }
 
-  addNote = (noteBody) => {
-    if (noteBody && this.titleFieldHandle && this.titleFieldHandle.value) {
+  setBodyTextHandle = (dom) => {
+    this.bodyTextHandle = dom;
+  }
+
+  addNote = () => {
+    if (this.titleFieldHandle && this.bodyTextHandle
+      && this.titleFieldHandle.value.length && this.bodyTextHandle.value.length) {
       const note = {
         title: this.titleFieldHandle.value,
-        body: noteBody,
+        body: this.bodyTextHandle.value,
       };
       this.titleFieldHandle.value = '';
+      this.bodyTextHandle.value = '';
       this.setState(prevState => ({
         notes: prevState.notes.concat(note),
       }));
@@ -55,7 +62,7 @@ class App extends React.Component {
             titlePlaceholder={strings.title_placeholder}
             currentLanguage={strings.current_language}
             onLanguageButtonClick={this.toggleLanguage}
-            onTitleChange={this.setCurrentTitle}
+            setTitleField={this.setTitleField}
           />
         </div>
         <div className="body-container">
@@ -64,7 +71,8 @@ class App extends React.Component {
             bodyNotesPlaceholder={strings.body_notes_placeholder}
             saveButtonText={strings.save_button_text}
             charactersLabelText={strings.characters_label_text}
-            addNoteBody={this.addNote}
+            setBodyTextHandle={this.setBodyTextHandle}
+            onSaveButton={this.addNote}
           />
         </div>
         <footer>

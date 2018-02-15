@@ -13,10 +13,13 @@ class BodySection extends React.Component {
     };
     this.MAX_LENGTH = 10;
     this.nodeBody = '';
+    this.textAreaHandle = null;
   }
   onTextChange = (evt) => {
-    const count = evt.target.value.length;
-    this.nodeBody = evt.target.value;
+    this.textAreaHandle = evt.target;
+    this.nodeBody = this.textAreaHandle.value;
+    const count = this.nodeBody.length;
+
     this.setState({
       count,
       charStyle: count === this.MAX_LENGTH ? 'red' : '',
@@ -25,6 +28,9 @@ class BodySection extends React.Component {
 
   handleSaveButton = () => {
     this.props.addNoteBody(this.nodeBody);
+    if (this.textAreaHandle) {
+      this.textAreaHandle.value = '';
+    }
   }
 
   render() {

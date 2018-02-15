@@ -14,11 +14,12 @@ class App extends React.Component {
       notes: [],
     };
     this.title = '';
+    this.titleFieldHandle = null;
   }
 
-
   setCurrentTitle = (evt) => {
-    this.title = evt.target.value;
+    this.titleFieldHandle = evt.target;
+    this.title = this.titleFieldHandle.value;
   }
 
   addNote = (noteBody) => {
@@ -26,6 +27,7 @@ class App extends React.Component {
       title: this.title,
       body: noteBody,
     };
+    this.titleFieldHandle.value = '';
     this.setState(prevState => ({
       notes: prevState.notes.concat(note),
     }));

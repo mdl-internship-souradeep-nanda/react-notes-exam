@@ -11,14 +11,34 @@ class App extends React.Component {
     super(props);
     this.state = {
       language: 'english',
+      notes: [],
     };
+    this.title = '';
   }
+
+
+  setCurrentTitle = (evt) => {
+    this.title = evt.target.value;
+  }
+
+  addNote = (noteBody) => {
+    const note = {
+      title: this.title,
+      body: noteBody,
+    };
+    this.setState(prevState => ({
+      notes: prevState.notes.concat(note),
+    }));
+  }
+
   toggleLanguage = () => {
     this.setState(prevState => ({
       language: prevState.language === 'english' ? 'thai' : 'english',
     }));
   }
+
   render() {
+    console.log(this.state.notes);
     const strings = STRINGS[this.state.language];
     return (
       <div className="App">
@@ -33,6 +53,7 @@ class App extends React.Component {
             titlePlaceholder={strings.title_placeholder}
             currentLanguage={strings.current_language}
             onLanguageButtonClick={this.toggleLanguage}
+            onTitleChange={this.setCurrentTitle}
           />
         </div>
         <div className="body-container">
@@ -41,6 +62,7 @@ class App extends React.Component {
             bodyNotesPlaceholder={strings.body_notes_placeholder}
             saveButtonText={strings.save_button_text}
             charactersLabelText={strings.characters_label_text}
+            addNoteBody={this.addNote}
           />
         </div>
         <footer>

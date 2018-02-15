@@ -21,6 +21,7 @@ function TitleSection(props) {
           className="note-title"
           type="text"
           placeholder={props.titlePlaceholder}
+          onChange={props.onTitleChange}
         />
       </div>
     </div>
@@ -32,6 +33,7 @@ TitleSection.propTypes = {
   currentLanguage: PropTypes.string.isRequired,
   titlePlaceholder: PropTypes.string.isRequired,
   onLanguageButtonClick: PropTypes.func.isRequired,
+  onTitleChange: PropTypes.func.isRequired,
 };
 
 export default TitleSection;

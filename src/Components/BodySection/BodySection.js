@@ -12,14 +12,21 @@ class BodySection extends React.Component {
       charStyle: '',
     };
     this.MAX_LENGTH = 10;
+    this.nodeBody = '';
   }
   onTextChange = (evt) => {
     const count = evt.target.value.length;
+    this.nodeBody = evt.target.value;
     this.setState({
       count,
       charStyle: count === this.MAX_LENGTH ? 'red' : '',
     });
   }
+
+  handleSaveButton = () => {
+    this.props.addNoteBody(this.nodeBody);
+  }
+
   render() {
     const charString = (this.MAX_LENGTH - this.state.count) + this.props.charactersLabelText;
     const characterCountStyle = `character-count ${this.state.charStyle}`;
@@ -43,7 +50,7 @@ class BodySection extends React.Component {
         </div>
         <div className="body-footer">
           <div className="save-button-wrapper">
-            <button className="save-button" >{this.props.saveButtonText}</button>
+            <button onClick={this.handleSaveButton} className="save-button" >{this.props.saveButtonText}</button>
           </div>
           <div className={characterCountStyle}>{charString}</div>
         </div>
@@ -57,6 +64,7 @@ BodySection.propTypes = {
   bodyHeader: PropTypes.string.isRequired,
   saveButtonText: PropTypes.string.isRequired,
   bodyNotesPlaceholder: PropTypes.arrayOf(PropTypes.string).isRequired,
+  addNoteBody: PropTypes.func.isRequired,
 };
 
 export default BodySection;

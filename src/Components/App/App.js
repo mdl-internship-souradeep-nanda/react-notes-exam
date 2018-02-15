@@ -23,14 +23,16 @@ class App extends React.Component {
   }
 
   addNote = (noteBody) => {
-    const note = {
-      title: this.title,
-      body: noteBody,
-    };
-    this.titleFieldHandle.value = '';
-    this.setState(prevState => ({
-      notes: prevState.notes.concat(note),
-    }));
+    if (noteBody && this.titleFieldHandle && this.titleFieldHandle.value) {
+      const note = {
+        title: this.title,
+        body: noteBody,
+      };
+      this.titleFieldHandle.value = '';
+      this.setState(prevState => ({
+        notes: prevState.notes.concat(note),
+      }));
+    }
   }
 
   toggleLanguage = () => {

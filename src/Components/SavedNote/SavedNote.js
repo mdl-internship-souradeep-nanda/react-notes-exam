@@ -4,7 +4,13 @@ import './SavedNote.css';
 
 function SavedNote(props) {
   return (
-    <div className="SavedNote-wrapper">
+    <div
+      className="SavedNote-wrapper"
+      onClick={props.onClick}
+      onKeyPress={props.onClick}
+      role="button"
+      tabIndex={0}
+    >
       <div className="SavedNote-title">{props.title}</div>
       <div className="SavedNote-body">
         <pre className="SavedNote-pre">{props.body}</pre>
@@ -16,6 +22,7 @@ function SavedNote(props) {
 SavedNote.propTypes = {
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default SavedNote;

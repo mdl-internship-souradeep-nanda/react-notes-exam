@@ -70,13 +70,22 @@ class App extends React.Component {
   getSavedNotesSectionJsx = () => {
     const notesJsx = this.state.notes.map((note, id) => {
       const noteKey = `note_${id}`;
-      return <SavedNote key={noteKey} title={note.title} body={note.body} />;
+      return (<SavedNote
+        key={noteKey}
+        title={note.title}
+        body={note.body}
+        onClick={() => this.onNoteClick(noteKey)}
+      />);
     });
     return (
       <div className="App-notes-container" >
         {notesJsx}
       </div>
     );
+  }
+
+  onNoteClick = (key) => {
+    console.log(key);
   }
 
   setTitleField = (dom) => {
@@ -101,7 +110,6 @@ class App extends React.Component {
       });
     }
   }
-
 
   addNote = () => {
     if (this.titleFieldHandle && this.bodyTextHandle

@@ -1,0 +1,14 @@
+.Header-header{
+  flex:1;
+  font-size: 1.5em;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  background: #fff;
+}
+
+.Header-center-span{
+  flex:1;
+}

@@ -1,6 +1,17 @@
 {
+  "PAGE_KEYS": {
+    "HOME_PAGE": "home_page",
+    "SAVED_NOTES_PAGE": "saved_notes_page"
+  },
   "english": {
-    "header_title": "Start taking notes",
+    "header_title": {
+      "home_page": "Start taking notes",
+      "saved_notes_page": "Saved notes"
+    },
+    "footer_title": {
+      "home_page": "About us",
+      "saved_notes_page": "Create new note"
+    },
     "note_title": "Note title",
     "title_placeholder": "Tasks for today",
     "current_language": "en",
@@ -12,23 +23,6 @@
       "Conventions to manage code base"
     ],
     "save_button_text": "Save",
-    "about_us": "About us",
     "characters_label_text": " characters"
-  },
-  "thai": {
-    "header_title": "เริ่มบันทึก",
-    "note_title": "หมายเหตุชื่อ",
-    "title_placeholder": "งานสำหรับวันนี้",
-    "current_language": "ไทย",
-    "body_header": "โปรดพิมพ์บันทึกย่อของคุณด้านล่าง",
-    "body_notes_placeholder": [
-      "เข้าใจว่าปฏิกิริยาตอบสนองได้ดีแค่ไหน",
-      "สร้างแอปพลิเคชัน Android หรือ ios",
-      "ติดตั้ง CI สำหรับเครื่องมืออัตโนมัติ",
-      "อนุสัญญาเพื่อจัดการฐานรหัส"
-    ],
-    "save_button_text": "บันทึก",
-    "about_us": "เกี่ยวกับเรา",
-    "characters_label_text": "อักขระ"
   }
 }

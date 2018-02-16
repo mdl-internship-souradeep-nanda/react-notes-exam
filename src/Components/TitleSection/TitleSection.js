@@ -13,11 +13,15 @@ class TitleSection extends React.Component {
     this.props.setTitleField(this.titleField);
   }
 
+  /**
+   * This function is called when text value changes
+   */
   handleChange = (evt) => {
     this.setState({
       content: evt.target.value,
     });
   }
+
   render() {
     return (
       <div className="TitleSection-wrapper">

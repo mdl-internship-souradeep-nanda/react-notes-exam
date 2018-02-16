@@ -45,10 +45,21 @@ class App extends React.Component {
     this.bodyTextHandle = null;
   }
 
+  /**
+   * This function accepts the key of the clicked note
+   * on the saved notes page and populates the fields of the
+   * editor
+   * @param key String expected format note_{id}
+   */
   onNoteClick = (key) => {
+    // Extract the array id from react key.
     const arrayIndex = Number(key.split('note_')[1]);
+
+    // Select the node from the notes array.
     const selectedNote = this.state.notes[arrayIndex];
 
+    // Update the state to reflect the data
+    // and set the page to home page.
     this.setState({
       titleText: selectedNote.title,
       bodyText: selectedNote.body,
@@ -57,6 +68,9 @@ class App extends React.Component {
     });
   }
 
+  /**
+   * This function returns the JSX for the title section
+   */
   getTitleSectionJsx = strings => (
     <div className="App-title-container">
       <TitleSection
@@ -70,6 +84,9 @@ class App extends React.Component {
     </div>
   )
 
+  /**
+   * This function returns the JSX for the body section
+   */
   getBodySectionJsx = strings => (
     <div className="App-body-container">
       <BodySection
@@ -84,6 +101,10 @@ class App extends React.Component {
     </div>
   )
 
+  /**
+   * This function generates the JSX for the saved
+   * notes array
+   */
   getSavedNotesSectionJsx = () => {
     const notesJsx = this.state.notes.map((note, id) => {
       const noteKey = `note_${id}`;
@@ -101,21 +122,32 @@ class App extends React.Component {
     );
   }
 
+  /**
+   * Saves the DOM handle of the title field
+   */
   setTitleField = (dom) => {
     this.titleFieldHandle = dom;
   }
 
+  /**
+   * Saves the DOM handle of the body text area field
+   */
   setBodyTextHandle = (dom) => {
     this.bodyTextHandle = dom;
   }
 
-
+  /**
+   * Toggles the language
+   */
   toggleLanguage = () => {
     // this.setState(prevState => ({
     //   language: prevState.language === 'english' ? 'thai' : 'english',
     // }));
   }
 
+  /**
+   * This function is called when the footer button is clicked
+   */
   footerCallback = () => {
     if (this.state.page_key === STRINGS.PAGE_KEYS.SAVED_NOTES_PAGE) {
       this.setState({
@@ -124,13 +156,20 @@ class App extends React.Component {
     }
   }
 
+  /**
+   * This function adds a note if `this.state.currentKey` is
+   * undefined, otherwise it updates that note in the notes array
+   */
   addNote = () => {
+    // If title or body is empty, dont update or create note
     if (this.titleFieldHandle && this.bodyTextHandle
       && this.titleFieldHandle.value.length && this.bodyTextHandle.value.length) {
       const note = {
         title: this.titleFieldHandle.value,
         body: this.bodyTextHandle.value,
       };
+
+      // Clear the text fields in the UI
       this.titleFieldHandle.value = '';
       this.bodyTextHandle.value = '';
 
@@ -139,6 +178,7 @@ class App extends React.Component {
       if (this.state.currentKey !== undefined) {
         const noteCopy = this.state.notes.slice();
         noteCopy[this.state.currentKey] = note;
+        // Update notes, reset fields and currentKey
         this.setState({
           notes: noteCopy,
           currentKey: undefined,
@@ -151,14 +191,18 @@ class App extends React.Component {
         }));
       }
     }
+
+    // Show the saved notes page
     this.setState({
       page_key: STRINGS.PAGE_KEYS.SAVED_NOTES_PAGE,
     });
   }
 
   render() {
-    // console.log(this.state.notes);
+    // Choose language
     const strings = STRINGS[this.state.language];
+
+    // Decide current page flag
     const isHomePage = this.state.page_key === STRINGS.PAGE_KEYS.HOME_PAGE;
 
     return (

@@ -12,23 +12,36 @@ class BodySection extends React.Component {
       charStyle: '',
       content: props.content,
     };
+
+    // Maximum allowed text length
     this.MAX_LENGTH = 10;
   }
 
-
   componentDidMount() {
+    // Send the text input DOM handle to parent
     this.props.setBodyTextHandle(this.textAreaHandle);
   }
 
+  /**
+   * This function is called when the save button is pressed
+   */
   onSaveButton = () => {
+    // Call the parent's save button handler
     this.props.onSaveButton();
+
+    // The parent will clear the text field programatically
+    // so call the onTextChange function manually
     this.onTextChange();
   }
 
+  /**
+   * This function is called when text is updated
+   */
   onTextChange = () => {
     this.nodeBody = this.textAreaHandle.value;
     const count = this.nodeBody.length;
 
+    // Change color based on text length
     this.setState({
       count,
       charStyle: count === this.MAX_LENGTH ? 'BodySection-red' : '',

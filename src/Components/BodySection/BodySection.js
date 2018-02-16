@@ -34,7 +34,7 @@ class BodySection extends React.Component {
   }
 
   render() {
-    const charString = (this.MAX_LENGTH - this.state.count) + this.props.charactersLabelText;
+    const charString = `${(this.MAX_LENGTH - this.state.count)} ${this.props.charactersLabelText}`;
     const characterCountStyle = `BodySection-character-count ${this.state.charStyle}`;
     const bodyTextStyle = `BodySection-text-body ${this.state.charStyle}`;
     return (

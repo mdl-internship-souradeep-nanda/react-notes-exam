@@ -6,7 +6,9 @@ function SavedNote(props) {
   return (
     <div className="SavedNote-wrapper">
       <div className="SavedNote-title">{props.title}</div>
-      <div className="SavedNote-body">{props.body}</div>
+      <div className="SavedNote-body">
+        <pre className="SavedNote-pre">{props.body}</pre>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ function Footer(props) {
   return (
     <div className="Footer-footer">
       <strong className="Footer-center-span">
-        <button onClick={props.callback}>
+        <button className="Footer-button" onClick={props.callback}>
           {props.title}
         </button>
       </strong>

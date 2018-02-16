@@ -16,5 +16,6 @@
 
 
 .App-notes-container{
-  flex-grow: 1;
+  flex:11;
+  overflow: scroll;
 }

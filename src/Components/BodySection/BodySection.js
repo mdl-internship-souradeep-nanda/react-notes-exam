@@ -53,6 +53,7 @@ class BodySection extends React.Component {
             placeholder={this.props.bodyNotesPlaceholder.join('\n')}
             onChange={this.onTextChange}
             maxLength={this.MAX_LENGTH}
+            value={this.props.value}
           />
         </div>
         <div className="BodySection-body-footer">
@@ -73,6 +74,7 @@ BodySection.propTypes = {
   bodyNotesPlaceholder: PropTypes.arrayOf(PropTypes.string).isRequired,
   setBodyTextHandle: PropTypes.func.isRequired,
   onSaveButton: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default BodySection;

@@ -37,9 +37,21 @@ class App extends React.Component {
         { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
         { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
       ],
+      bodyText: '',
+      titleText: '',
     };
     this.titleFieldHandle = null;
     this.bodyTextHandle = null;
+  }
+
+  onNoteClick = (key) => {
+    const arrayIndex = Number(key.split('note_')[1]);
+    const selectedNote = this.state.notes[arrayIndex];
+    this.setState({
+      titleText: selectedNote.title,
+      bodyText: selectedNote.body,
+      page_key: STRINGS.PAGE_KEYS.HOME_PAGE,
+    });
   }
 
   getTitleSectionJsx = strings => (
@@ -50,6 +62,7 @@ class App extends React.Component {
         currentLanguage={strings.current_language}
         onLanguageButtonClick={this.toggleLanguage}
         setTitleField={this.setTitleField}
+        value={this.state.titleText}
       />
     </div>
   )
@@ -63,6 +76,7 @@ class App extends React.Component {
         charactersLabelText={strings.characters_label_text}
         setBodyTextHandle={this.setBodyTextHandle}
         onSaveButton={this.addNote}
+        value={this.state.bodyText}
       />
     </div>
   )
@@ -82,10 +96,6 @@ class App extends React.Component {
         {notesJsx}
       </div>
     );
-  }
-
-  onNoteClick = (key) => {
-    console.log(key);
   }
 
   setTitleField = (dom) => {

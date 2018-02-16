@@ -26,6 +26,7 @@ class TitleSection extends React.Component {
             className="TitleSection-note-title"
             type="text"
             placeholder={this.props.titlePlaceholder}
+            value={this.props.value}
           />
         </div>
       </div>
@@ -39,6 +40,7 @@ TitleSection.propTypes = {
   titlePlaceholder: PropTypes.string.isRequired,
   onLanguageButtonClick: PropTypes.func.isRequired,
   setTitleField: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
 export default TitleSection;

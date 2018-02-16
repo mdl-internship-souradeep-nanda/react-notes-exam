@@ -3,8 +3,20 @@ import PropTypes from 'prop-types';
 import './TitleSection.css';
 
 class TitleSection extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      content: props.content.slice(),
+    };
+  }
   componentDidMount() {
     this.props.setTitleField(this.titleField);
+  }
+
+  handleChange = (evt) => {
+    this.setState({
+      content: evt.target.value,
+    });
   }
   render() {
     return (
@@ -26,7 +38,8 @@ class TitleSection extends React.Component {
             className="TitleSection-note-title"
             type="text"
             placeholder={this.props.titlePlaceholder}
-            value={this.props.value}
+            value={this.state.content}
+            onChange={this.handleChange}
           />
         </div>
       </div>
@@ -40,7 +53,7 @@ TitleSection.propTypes = {
   titlePlaceholder: PropTypes.string.isRequired,
   onLanguageButtonClick: PropTypes.func.isRequired,
   setTitleField: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default TitleSection;

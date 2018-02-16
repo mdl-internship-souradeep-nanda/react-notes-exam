@@ -39,6 +39,7 @@ class App extends React.Component {
       ],
       bodyText: '',
       titleText: '',
+      currentKey: undefined,
     };
     this.titleFieldHandle = null;
     this.bodyTextHandle = null;
@@ -47,10 +48,12 @@ class App extends React.Component {
   onNoteClick = (key) => {
     const arrayIndex = Number(key.split('note_')[1]);
     const selectedNote = this.state.notes[arrayIndex];
+
     this.setState({
       titleText: selectedNote.title,
       bodyText: selectedNote.body,
       page_key: STRINGS.PAGE_KEYS.HOME_PAGE,
+      currentKey: arrayIndex,
     });
   }
 
@@ -62,7 +65,7 @@ class App extends React.Component {
         currentLanguage={strings.current_language}
         onLanguageButtonClick={this.toggleLanguage}
         setTitleField={this.setTitleField}
-        value={this.state.titleText}
+        content={this.state.titleText}
       />
     </div>
   )
@@ -76,7 +79,7 @@ class App extends React.Component {
         charactersLabelText={strings.characters_label_text}
         setBodyTextHandle={this.setBodyTextHandle}
         onSaveButton={this.addNote}
-        value={this.state.bodyText}
+        content={this.state.bodyText}
       />
     </div>
   )
@@ -130,9 +133,21 @@ class App extends React.Component {
       };
       this.titleFieldHandle.value = '';
       this.bodyTextHandle.value = '';
-      this.setState(prevState => ({
-        notes: prevState.notes.concat(note),
-      }));
+
+      // If a note is selected, edit it,
+      // otherwise create a new note
+      if (this.state.currentKey !== undefined) {
+        const noteCopy = this.state.notes.slice();
+        noteCopy[this.state.currentKey] = note;
+        this.setState({
+          notes: noteCopy,
+          currentKey: undefined,
+        });
+      } else {
+        this.setState(prevState => ({
+          notes: prevState.notes.concat(note),
+        }));
+      }
     }
     this.setState({
       page_key: STRINGS.PAGE_KEYS.SAVED_NOTES_PAGE,

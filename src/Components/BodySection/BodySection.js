@@ -10,9 +10,11 @@ class BodySection extends React.Component {
     this.state = {
       count: 0,
       charStyle: '',
+      content: props.content,
     };
     this.MAX_LENGTH = 10;
   }
+
 
   componentDidMount() {
     this.props.setBodyTextHandle(this.textAreaHandle);
@@ -30,6 +32,7 @@ class BodySection extends React.Component {
     this.setState({
       count,
       charStyle: count === this.MAX_LENGTH ? 'BodySection-red' : '',
+      content: this.nodeBody,
     });
   }
 
@@ -53,7 +56,7 @@ class BodySection extends React.Component {
             placeholder={this.props.bodyNotesPlaceholder.join('\n')}
             onChange={this.onTextChange}
             maxLength={this.MAX_LENGTH}
-            value={this.props.value}
+            value={this.state.content}
           />
         </div>
         <div className="BodySection-body-footer">
@@ -74,7 +77,7 @@ BodySection.propTypes = {
   bodyNotesPlaceholder: PropTypes.arrayOf(PropTypes.string).isRequired,
   setBodyTextHandle: PropTypes.func.isRequired,
   onSaveButton: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
 };
 
 export default BodySection;

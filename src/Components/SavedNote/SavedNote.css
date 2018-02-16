@@ -19,5 +19,5 @@
 }
 
 .SavedNote-pre{
-  overflow: scroll;
+  overflow: auto;
 }

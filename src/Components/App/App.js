@@ -16,8 +16,8 @@ class App extends React.Component {
       language: 'english',
       page_key: STRINGS.PAGE_KEYS.HOME_PAGE,
       notes: [
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
+        { title: 'title_0', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
+        { title: 'title_1', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
         { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
         { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
         { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
@@ -142,6 +142,8 @@ class App extends React.Component {
         this.setState({
           notes: noteCopy,
           currentKey: undefined,
+          titleText: '',
+          bodyText: '',
         });
       } else {
         this.setState(prevState => ({

@@ -13,3 +13,8 @@
   flex:8;
   display: flex;
 }
+
+
+.App-notes-container{
+  flex-grow: 1;
+}

@@ -18,12 +18,6 @@ class App extends React.Component {
       notes: [
         { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
         { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
       ],
     };
     this.titleFieldHandle = null;
@@ -56,9 +50,10 @@ class App extends React.Component {
   )
 
   getSavedNotesSectionJsx = () => {
-    const notesJsx = this.state.notes.map(note => (
-      <SavedNote title={note.title} body={note.body} />
-    ));
+    const notesJsx = this.state.notes.map((note, id) => {
+      const noteKey = `note_${id}`;
+      return <SavedNote key={noteKey} title={note.title} body={note.body} />;
+    });
     return (
       <div className="App-notes-container" >
         {notesJsx}
@@ -109,7 +104,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.notes);
+    // console.log(this.state.notes);
     const strings = STRINGS[this.state.language];
     const isHomePage = this.state.page_key === STRINGS.PAGE_KEYS.HOME_PAGE;
 

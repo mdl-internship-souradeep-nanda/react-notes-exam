@@ -4,11 +4,9 @@ import './SavedNote.css';
 
 function SavedNote(props) {
   return (
-    <div className="SavedNote-header">
-      <strong className="SavedNote-center-span">
-        <div className="SavedNote-title">{props.title}</div>
-        <div className="SavedNote-body">{props.body}</div>
-      </strong>
+    <div className="SavedNote-wrapper">
+      <div className="SavedNote-title">{props.title}</div>
+      <div className="SavedNote-body">{props.body}</div>
     </div>
   );
 }

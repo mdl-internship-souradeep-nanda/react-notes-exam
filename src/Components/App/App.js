@@ -1,4 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import './App.css';
 
 import Header from '../Header/Header';
@@ -6,6 +9,8 @@ import TitleSection from '../TitleSection/TitleSection';
 import BodySection from '../BodySection/BodySection';
 import Footer from '../Footer/Footer';
 import SavedNote from '../SavedNote/SavedNote';
+
+import { noteAdd, noteUpdate } from '../../Actions/NoteAction';
 
 import STRINGS from '../../strings.json';
 
@@ -15,32 +20,12 @@ class App extends React.Component {
     this.state = {
       language: 'english',
       page_key: STRINGS.PAGE_KEYS.HOME_PAGE,
-      notes: [
-        { title: 'title_0', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_1', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-        { title: 'title_', body: 'body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body body ' },
-      ],
       bodyText: '',
       titleText: '',
       currentKey: undefined,
     };
+
+    // console.log(this.props);
     this.titleFieldHandle = null;
     this.bodyTextHandle = null;
   }
@@ -56,7 +41,7 @@ class App extends React.Component {
     const arrayIndex = Number(key.split('note_')[1]);
 
     // Select the node from the notes array.
-    const selectedNote = this.state.notes[arrayIndex];
+    const selectedNote = this.props.state.noteReducer[arrayIndex];
 
     // Update the state to reflect the data
     // and set the page to home page.
@@ -95,7 +80,7 @@ class App extends React.Component {
         saveButtonText={strings.save_button_text}
         charactersLabelText={strings.characters_label_text}
         setBodyTextHandle={this.setBodyTextHandle}
-        onSaveButton={this.addNote}
+        onSaveButton={this.noteAdd}
         content={this.state.bodyText}
       />
     </div>
@@ -106,15 +91,18 @@ class App extends React.Component {
    * notes array
    */
   getSavedNotesSectionJsx = () => {
-    const notesJsx = this.state.notes.map((note, id) => {
-      const noteKey = `note_${id}`;
-      return (<SavedNote
-        key={noteKey}
-        title={note.title}
-        body={note.body}
-        onClick={() => this.onNoteClick(noteKey)}
-      />);
-    });
+    const keys = Object.keys(this.props.state.noteReducer);
+    const notesJsx = keys
+      .filter(key => key !== 'length')
+      .map((numericKey) => {
+        const noteKey = `note_${numericKey}`;
+        return (<SavedNote
+          key={noteKey}
+          title={this.props.state.noteReducer[numericKey].title}
+          body={this.props.state.noteReducer[numericKey].body}
+          onClick={() => this.onNoteClick(noteKey)}
+        />);
+      });
     return (
       <div className="App-notes-container" >
         {notesJsx}
@@ -160,7 +148,7 @@ class App extends React.Component {
    * This function adds a note if `this.state.currentKey` is
    * undefined, otherwise it updates that note in the notes array
    */
-  addNote = () => {
+  noteAdd = () => {
     // If title or body is empty, dont update or create note
     if (this.titleFieldHandle && this.bodyTextHandle
       && this.titleFieldHandle.value.length && this.bodyTextHandle.value.length) {
@@ -176,19 +164,19 @@ class App extends React.Component {
       // If a note is selected, edit it,
       // otherwise create a new note
       if (this.state.currentKey !== undefined) {
-        const noteCopy = this.state.notes.slice();
-        noteCopy[this.state.currentKey] = note;
+        // console.log('Updating', note);
+        this.props.noteUpdate({ ...note, id: this.state.currentKey });
+        // noteCopy[this.state.currentKey] = note;
         // Update notes, reset fields and currentKey
         this.setState({
-          notes: noteCopy,
+          // notes: noteCopy,
           currentKey: undefined,
           titleText: '',
           bodyText: '',
         });
       } else {
-        this.setState(prevState => ({
-          notes: prevState.notes.concat(note),
-        }));
+        // console.log('Adding', note);
+        this.props.noteAdd(note);
       }
     }
 
@@ -217,4 +205,25 @@ class App extends React.Component {
   }
 }
 
-export default App;
+App.propTypes = {
+  state: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+  noteAdd: PropTypes.func.isRequired,
+  noteUpdate: PropTypes.func.isRequired,
+};
+
+// export default App;
+
+const mapStateToProps = state => ({
+  state,
+});
+
+const mapDispatchToProps = dispatch => ({
+  noteAdd: (note) => {
+    dispatch(noteAdd(note));
+  },
+  noteUpdate: (note) => {
+    dispatch(noteUpdate(note));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

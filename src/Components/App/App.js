@@ -30,6 +30,16 @@ class App extends React.Component {
     this.bodyTextHandle = null;
   }
 
+  componentDidMount = () => {
+    fetch('http://localhost:8080/fetch')
+      .then(response => response.json())
+      .then((body) => {
+        Object.keys(body)
+          .filter(key => key !== 'length')
+          .map(key => this.props.noteAdd(body[key]));
+      });
+  }
+
   /**
    * This function accepts the key of the clicked note
    * on the saved notes page and populates the fields of the

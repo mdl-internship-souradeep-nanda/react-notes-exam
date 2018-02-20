@@ -13,6 +13,7 @@ import SavedNote from '../SavedNote/SavedNote';
 import { noteAdd, noteUpdate } from '../../Actions/NoteAction';
 
 import STRINGS from '../../strings.json';
+import EXTERNALS from '../../externals.json';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,6 +29,16 @@ class App extends React.Component {
     // console.log(this.props);
     this.titleFieldHandle = null;
     this.bodyTextHandle = null;
+  }
+
+  componentDidMount = () => {
+    fetch(EXTERNALS.fetch)
+      .then(response => response.json())
+      .then((body) => {
+        Object.keys(body)
+          .filter(key => key !== 'length')
+          .map(key => this.props.noteAdd(body[key]));
+      });
   }
 
   /**
@@ -144,6 +155,18 @@ class App extends React.Component {
     }
   }
 
+  upsert = (note) => {
+    // Send note to backend
+    fetch(EXTERNALS.upsert, {
+      method: 'post',
+      headers: {
+        Accept: 'application/json, text/plain, */*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(note),
+    });
+  }
+
   /**
    * This function adds a note if `this.state.currentKey` is
    * undefined, otherwise it updates that note in the notes array
@@ -165,7 +188,9 @@ class App extends React.Component {
       // otherwise create a new note
       if (this.state.currentKey !== undefined) {
         // console.log('Updating', note);
-        this.props.noteUpdate({ ...note, id: this.state.currentKey });
+        const newNote = { ...note, id: this.state.currentKey };
+        this.props.noteUpdate(newNote);
+        this.upsert(newNote);
         // noteCopy[this.state.currentKey] = note;
         // Update notes, reset fields and currentKey
         this.setState({
@@ -177,6 +202,7 @@ class App extends React.Component {
       } else {
         // console.log('Adding', note);
         this.props.noteAdd(note);
+        this.upsert({ ...note, id: this.props.state.noteReducer.length });
       }
     }
 

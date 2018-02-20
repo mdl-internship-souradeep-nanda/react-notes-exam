@@ -1,15 +1,5 @@
 const defaultState = {
-  length: 2,
-  0: {
-    id: 0,
-    title: 'Dummy title0',
-    body: 'dummy body0',
-  },
-  1: {
-    id: 1,
-    title: 'Dummy title1',
-    body: 'dummy body1',
-  },
+  length: 0,
 };
 const noteReducer = (state = defaultState, action) => {
   let newState = state;

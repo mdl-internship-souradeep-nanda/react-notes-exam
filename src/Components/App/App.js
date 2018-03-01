@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+
 import './App.css';
 
 import Header from '../Header/Header';
@@ -217,16 +219,34 @@ class App extends React.Component {
     const strings = STRINGS[this.state.language];
 
     // Decide current page flag
-    const isHomePage = this.state.page_key === STRINGS.PAGE_KEYS.HOME_PAGE;
+    // const isHomePage = this.state.page_key === STRINGS.PAGE_KEYS.HOME_PAGE;
 
     return (
-      <div className="App-wrapper">
-        <Header title={strings.header_title[this.state.page_key]} />
-        {isHomePage ? this.getTitleSectionJsx(strings) : null}
-        {isHomePage ? this.getBodySectionJsx(strings) : null}
-        {isHomePage ? null : this.getSavedNotesSectionJsx()}
-        <Footer title={strings.footer_title[this.state.page_key]} callback={this.footerCallback} />
-      </div>
+      <BrowserRouter>
+        <div className="App-wrapper">
+          {window.location.pathname !== `/${this.state.page_key}` ?
+            (<Redirect to={`/${this.state.page_key}`} />) : null}
+          <Header title={strings.header_title[this.state.page_key]} />
+          <Route
+            exact
+            path={`/${STRINGS.PAGE_KEYS.HOME_PAGE}`}
+            render={() => this.getTitleSectionJsx(strings)}
+          />
+          <Route
+            exact
+            path={`/${STRINGS.PAGE_KEYS.HOME_PAGE}`}
+            render={() => this.getBodySectionJsx(strings)}
+          />
+          <Route
+            path={`/${STRINGS.PAGE_KEYS.SAVED_NOTES_PAGE}`}
+            render={() => this.getSavedNotesSectionJsx()}
+          />
+          <Footer
+            title={strings.footer_title[this.state.page_key]}
+            callback={this.footerCallback}
+          />
+        </div>
+      </BrowserRouter>
     );
   }
 }
